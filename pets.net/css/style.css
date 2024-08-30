@@ -23,3 +23,27 @@ footer
 
 
 }
+
+section {
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(129, 99, 99);
+}
+.veterinarias{
+    text-align: center;
+
+}
+
+.Proa{
+    text-align: center;
+
+}
+.logo_IG{
+    display: flex;
+    justify-content: right;
+
+}
+
+.instagram {
+    margin-left: 30%;
+}
