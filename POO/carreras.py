@@ -7,7 +7,7 @@ _____________________________
 *    2 Jugar carrera        *
 *    3 Salir                *
 _____________________________
-'''
+       '''
 
 cantidadPersonaje = 0
 
@@ -20,8 +20,7 @@ while True:
         continue
 
     if opcion == 1:
-        p1 = Personaje("Batman", 180, 80, 90, 70)
-        print(f"El personaje se llama {p1.nombre}")
+        nombre = input("")
     
     elif opcion == 2:
         p2 = Personaje("Superman", 190, 100, 100, 100)
