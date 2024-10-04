@@ -10,69 +10,70 @@
 
 <body>
     <header>
-        <h1 class="title2"> Pets.Net es un sitio web</h1>
-        <input type="text" class=" barra_de_navegacion" placeholder="buscador..">
+        <h1 class="title">Pets.Net - Tu sitio web para mascotas</h1>
+        <input type="text" id="search-input" placeholder="Buscador...">
         <nav>
-            <a href="inicio.html">Inicio</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="contactos.html">Contactos</a>
-            <a href="ayuda.html">Ayuda</a>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="inicio.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="contactos.html">Contactos</a></li>
+                <li class="nav-item"><a class="nav-link" href="ayuda.html">Ayuda</a></li>
+            </ul>
         </nav>
-
     </header>
 
     <main>
-        <div id="carouselExampleIndicators" class="carousel slide">
-        <div class = "imagen">
-                <div class="carousel-indicators">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="img/perrosss.jfif" class="d-block w-100" alt="perros" width="200" height="200">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/perro 2.jfif" class="d-block w-100" alt="perro2" width="200" height="200" >
-                </div>
-                <div class="carousel-item">
-                    <img src="img/perro 3.jfif" class="d-block w-100" alt="perro3" width="200" height="200">
-                </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
             </div>
-        <section>
-            <img src="img/perrosss.jfif" alt="perro 1" width="200" height="200" >
-            <img src="img/perro 2.jfif" alt="perro 2" width="200" height="200">
-            <img src="img/perro 3.jfif" alt="perro 3"width="200" height="200">
-            <img src="img/perro 4.jfif" alt="perro 4"width="200" height="200">
-            <img src="img/perro 5.jfif" alt="perro 5"width="200" height="200">
-        </section>
-        <div>
-            <h2 class="veterinarias">veterinarias en la zona</h2>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/perrosss.jfif" class="d-block w-100" alt="Perros" width="200" height="200">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/perro 2.jfif" class="d-block w-100" alt="Perro 2" width="200" height="200">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/perro 3.jfif" class="d-block w-100" alt="Perro 3" width="200" height="200">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
         </div>
 
+
+        <section>
+            <h2 class="mt-4">Veterinarias en la zona</h2>
+            <button data-localidad="valle hermoso">Valle Hermoso</button>
+            <button data-localidad="la falda">La Falda</button>
+            <button data-localidad="huerta grande">Huerta Grande</button>
+        </section>
+        
     </main>
-    
-    <footer class="Proa">
-        ©ProA La Falda 2024 
-        ©Programacion
-        ©4to año 
-            <div class="instagram">
-                <a href="https://www.instagram.com/"><img src="img/logo IG posta.png" alt="Logo_IG" width="50" height="50"></a>
-            </div>
-   
+
+    <footer class="text-center mt-4">
+        <p>©ProA La Falda 2024 | ©Programación | ©4to año</p>
+        <div>
+            <a href="https://www.instagram.com/" target="_blank">
+                <img src="img/logo IG posta.png" alt="Logo de Instagram" width="50" height="50">
+            </a>
+        </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
-</html>
+    <script src="script.js"></script>
+<body>
+    
+
+     
+    
+
 
 

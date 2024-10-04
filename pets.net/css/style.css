@@ -57,3 +57,6 @@ section {
     height: 70% ;
 
 }
+button {
+    display: inline-block;
+}
