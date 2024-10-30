@@ -1,3 +1,5 @@
+import time
+import os
 import sqlite3
 from CLSEstudiante import Estudiante
 from CLSMaestro import Profesor
@@ -5,33 +7,10 @@ from CLSMaterias import Materia
 from CLSCaleficacion import Calificacion
 
 
+
 def conectar_db():
     conn = sqlite3.connect("escuela.db")
     return conn
-
-# Crear tablas si no existen
-def crear_tablas(conn):
-    cursor = conn.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS estudiantes (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nombre TEXT,
-                        edad INTEGER)''')
-    cursor.execute('''CREATE TABLE IF NOT EXISTS profesores (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nombre TEXT,
-                        asignatura TEXT)''')
-    cursor.execute('''CREATE TABLE IF NOT EXISTS materias (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nombre TEXT,
-                        codigo TEXT)''')
-    cursor.execute('''CREATE TABLE IF NOT EXISTS calificaciones (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        estudiante_id INTEGER,
-                        materia_id INTEGER,
-                        calificacion REAL,
-                        FOREIGN KEY(estudiante_id) REFERENCES estudiantes(id),
-                        FOREIGN KEY(materia_id) REFERENCES materias(id))''')
-    conn.commit()
 
 # Función para agregar estudiante
 def agregar_estudiante(conn):
@@ -104,7 +83,6 @@ def mostrar_calificaciones(conn):
 
 def main():
     conn = conectar_db()
-    crear_tablas(conn)  # Asegurarse de que las tablas existan antes de comenzar
     while True:
         print("\nSistema de Gestión Escolar")
         print("1. Agregar estudiante")
@@ -118,6 +96,8 @@ def main():
         print("9. Salir")
 
         opcion = input("Seleccione una opción: ")
+        time.sleep(1.5)
+        os.system("cls" if os.name == "nt" else "clear")
 
         if opcion == '1':
             agregar_estudiante(conn)
@@ -129,18 +109,26 @@ def main():
             agregar_calificacion(conn)
         elif opcion == '5':
             mostrar_estudiantes(conn)
+            time.sleep(1.5)
         elif opcion == '6':
             mostrar_profesores(conn)
+            time.sleep(1.5)
         elif opcion == '7':
             mostrar_materias(conn)
+            time.sleep(1.5)
         elif opcion == '8':
             mostrar_calificaciones(conn)
+            time.sleep(1.5)
         elif opcion == '9':
             print("Saliendo del sistema.")
             conn.close()
             break
         else:
             print("Opción no válida. Intente de nuevo.")
+    
+    
+    time.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")            
 
 if __name__ == "__main__":
     main()
