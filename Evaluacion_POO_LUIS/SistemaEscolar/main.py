@@ -9,10 +9,34 @@ def conectar_db():
     conn = sqlite3.connect("escuela.db")
     return conn
 
+# Crear tablas si no existen
+def crear_tablas(conn):
+    cursor = conn.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS estudiantes (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        nombre TEXT,
+                        edad INTEGER)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS profesores (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        nombre TEXT,
+                        asignatura TEXT)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS materias (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        nombre TEXT,
+                        codigo TEXT)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS calificaciones (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        estudiante_id INTEGER,
+                        materia_id INTEGER,
+                        calificacion REAL,
+                        FOREIGN KEY(estudiante_id) REFERENCES estudiantes(id),
+                        FOREIGN KEY(materia_id) REFERENCES materias(id))''')
+    conn.commit()
+
 # Función para agregar estudiante
 def agregar_estudiante(conn):
     nombre = input("Ingrese el nombre del estudiante: ")
-    edad = input("Ingrese la edad del estudiante: ")
+    edad = int(input("Ingrese la edad del estudiante: "))
     cursor = conn.cursor()
     cursor.execute("INSERT INTO estudiantes (nombre, edad) VALUES (?, ?)", (nombre, edad))
     conn.commit()
@@ -38,9 +62,9 @@ def agregar_materia(conn):
 
 # Función para agregar calificación
 def agregar_calificacion(conn):
-    estudiante_id = input("Ingrese el ID del estudiante: ")
-    materia_id = input("Ingrese el ID de la materia: ")
-    calificacion = input("Ingrese la calificación: ")
+    estudiante_id = int(input("Ingrese el ID del estudiante: "))
+    materia_id = int(input("Ingrese el ID de la materia: "))
+    calificacion = float(input("Ingrese la calificación: "))
     cursor = conn.cursor()
     cursor.execute("INSERT INTO calificaciones (estudiante_id, materia_id, calificacion) VALUES (?, ?, ?)", (estudiante_id, materia_id, calificacion))
     conn.commit()
@@ -80,7 +104,7 @@ def mostrar_calificaciones(conn):
 
 def main():
     conn = conectar_db()
-    cursor = conn.cursor()
+    crear_tablas(conn)  # Asegurarse de que las tablas existan antes de comenzar
     while True:
         print("\nSistema de Gestión Escolar")
         print("1. Agregar estudiante")
@@ -97,12 +121,6 @@ def main():
 
         if opcion == '1':
             agregar_estudiante(conn)
-            nombre = input("Ingrese el nombre del estudiante: ")
-            edad = input("Ingrese la edad del estudiante: ")
-            cursor = conn.cursor()
-            cursor.execute("INSERT INTO estudiantes (nombre, edad) VALUES (?, ?)", (nombre, edad))
-            conn.commit()
-            print("Estudiante agregado correctamente.")
         elif opcion == '2':
             agregar_profesor(conn)
         elif opcion == '3':
