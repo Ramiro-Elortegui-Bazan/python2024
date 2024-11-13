@@ -8,4 +8,4 @@ class Estudiante:
     
     def guardar(self):
         conn = sqlite3.connect('escolar.db')
-        c = conn.cursor()
+        c = conn.cursor()   

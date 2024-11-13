@@ -14,12 +14,22 @@ def conectar_db():
 
 # Función para agregar estudiante
 def agregar_estudiante(conn):
+    id_estudiante = int(input("Ingrese el ID del estudiante: "))
     nombre = input("Ingrese el nombre del estudiante: ")
     edad = int(input("Ingrese la edad del estudiante: "))
+    fecha_nacimiento = input("Ingrese la fecha de nacimiento del estudiante (YYYY-MM-DD): ")
+    dni = input("Ingrese el DNI del estudiante: ")
+    curso = input("Ingrese el curso del estudiante: ")
+    
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO estudiantes (nombre, edad) VALUES (?, ?)", (nombre, edad))
+    cursor.execute("""
+        INSERT INTO estudiantes (id, nombre, edad, fecha_nacimiento, dni, curso) 
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (id_estudiante, nombre, edad, fecha_nacimiento, dni, curso))
+    
     conn.commit()
     print("Estudiante agregado correctamente.")
+
 
 # Función para agregar profesor
 def agregar_profesor(conn):
@@ -76,10 +86,16 @@ def mostrar_materias(conn):
 # Función para mostrar calificaciones
 def mostrar_calificaciones(conn):
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM calificaciones")
+    cursor.execute('''
+        SELECT c.id, e.nombre, m.nombre, c.calificacion
+        FROM calificaciones c
+        JOIN estudiantes e ON c.estudiante_id = e.id
+        JOIN materias m ON c.materia_id = m.id
+    ''')
     calificaciones = cursor.fetchall()
     for calificacion in calificaciones:
-        print(f"ID Estudiante: {calificacion[1]}, ID Materia: {calificacion[2]}, Calificación: {calificacion[3]}")
+        print(f"ID: {calificacion[0]}, Estudiante: {calificacion[1]}, Materia: {calificacion[2]}, Calificación: {calificacion[3]}")
+
 
 def main():
     conn = conectar_db()
