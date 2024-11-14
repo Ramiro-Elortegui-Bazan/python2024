@@ -1,10 +1,10 @@
 import sqlite3
 
 class Materia:
-    def __init__(self,materia, curso,profesor):
-        self.materia = materia
+    def __init__(self,id_materia,nombre,curso,):
+        self.id_materia = id_materia
+        self.nombre = nombre
         self.curso = curso 
-        self.profesor = profesor 
 def guardar(self):
     conn = sqlite3.connect('escolar.db')
     c = conn.cursor()

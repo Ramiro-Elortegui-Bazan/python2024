@@ -2,6 +2,7 @@ import time
 import os
 import sqlite3
 from CLSEstudiante import Estudiante
+from CLSCurso import Curso
 from CLSMaestro import Profesor
 from CLSMaterias import Materia
 from CLSCaleficacion import Calificacion
@@ -14,18 +15,19 @@ def conectar_db():
 
 # Función para agregar estudiante
 def agregar_estudiante(conn):
-    id_estudiante = int(input("Ingrese el ID del estudiante: "))
+    legajo_id = int(input("Ingrese el ID del estudiante: "))
     nombre = input("Ingrese el nombre del estudiante: ")
     edad = int(input("Ingrese la edad del estudiante: "))
     fecha_nacimiento = input("Ingrese la fecha de nacimiento del estudiante (YYYY-MM-DD): ")
     dni = input("Ingrese el DNI del estudiante: ")
     curso = input("Ingrese el curso del estudiante: ")
     
+    conn = sqlite3.connect('escolar.db')
     cursor = conn.cursor()
     cursor.execute("""
         INSERT INTO estudiantes (id, nombre, edad, fecha_nacimiento, dni, curso) 
         VALUES (?, ?, ?, ?, ?, ?)
-    """, (id_estudiante, nombre, edad, fecha_nacimiento, dni, curso))
+    """, (legajo_id, nombre, edad, fecha_nacimiento, dni, curso))
     
     conn.commit()
     print("Estudiante agregado correctamente.")
@@ -100,7 +102,7 @@ def mostrar_calificaciones(conn):
 def main():
     conn = conectar_db()
     while True:
-        print("\nSistema de Gestión Escolar")
+        print("Sistema de Gestión Escolar")
         print("1. Agregar estudiante")
         print("2. Agregar profesor")
         print("3. Agregar materia")
